@@ -26,19 +26,20 @@ app.use(session({
   cookie:{httpOnly:false},
 }));
 
-app.use((req,res,next)=>
-{
-  if((req.url==="/" || req.url=="/index.html") && typeof req.session.authenticated==='undefined')
-  {
-       res.redirect("/login")   ;
-  }
-  else if((req.url==="/achievement.html" || req.url==="/aboutus.html") && typeof req.session.authenticated==='undefined')
-  {
-       res.status(404).sendFile("404.html",{root:__dirname})
-  }
-  else
-   next();
-})
+
+// app.use((req,res,next)=>
+// {
+//   if((req.url==="/" || req.url=="/index.html") && typeof req.session.authenticated==='undefined')
+//   {
+//        res.redirect("/login")   ;
+//   }
+//   else if((req.url==="/achievement.html" || req.url==="/aboutus.html") && typeof req.session.authenticated==='undefined')
+//   {
+//        res.status(404).sendFile("404.html",{root:__dirname})
+//   }
+//   else
+//    next();
+// })
 
 app.use(express.static(path.join(__dirname)));
 
@@ -114,4 +115,4 @@ app.use((req, res, next) => {
 app.listen(8000,(error)=>
 {
     console.log("Server running");
-})
+});
